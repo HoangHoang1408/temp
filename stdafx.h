@@ -66,14 +66,14 @@ enum ecolor {
 };
 
 enum esqare {
-    A1=0  , B1, C1, D1, E1, F1, G1, H1,
-    A2=16 , B2, C2, D2, E2, F2, G2, H2,
-    A3=32 , B3, C3, D3, E3, F3, G3, H3,
-    A4=48 , B4, C4, D4, E4, F4, G4, H4,
-    A5=64 , B5, C5, D5, E5, F5, G5, H5,
-    A6=80 , B6, C6, D6, E6, F6, G6, H6,
-    A7=96 , B7, C7, D7, E7, F7, G7, H7,
-    A8=112, B8, C8, D8, E8, F8, G8, H8
+    A1 = 0, B1, C1, D1, E1, F1, G1, H1,
+    A2 = 16, B2, C2, D2, E2, F2, G2, H2,
+    A3 = 32, B3, C3, D3, E3, F3, G3, H3,
+    A4 = 48, B4, C4, D4, E4, F4, G4, H4,
+    A5 = 64, B5, C5, D5, E5, F5, G5, H5,
+    A6 = 80, B6, C6, D6, E6, F6, G6, H6,
+    A7 = 96, B7, C7, D7, E7, F7, G7, H7,
+    A8 = 112, B8, C8, D8, E8, F8, G8, H8
 };
 
 enum ecastle {
@@ -108,11 +108,11 @@ struct sboard {
     int  pcsq_mg[2];
     int  pcsq_eg[2];
     int piece_material[2];
-    int pawn_material[2];
-    U8 piece_cnt[2][6];
-	U8 pawns_on_file[2][8];
-	U8 pawns_on_rank[2][8];
-	U8 pawn_ctrl[2][128];
+    int pawn_material[2]; 
+    U8 piece_cnt[2][6];// oke
+    U8 pawns_on_file[2][8]; // oke
+    U8 pawns_on_rank[2][8];// oke
+    U8 pawn_ctrl[2][128];// oke
 };
 extern sboard b;
 
@@ -136,8 +136,8 @@ struct sSearchDriver {
     int myside;
     U8 depth;
     int history[2][128][128];
-	int cutoff [2][128][128];
-    smove killers[1024] [2];
+    int cutoff[2][128][128];
+    smove killers[1024][2];
     U64 nodes;
     S32 movetime;
     U64 q_nodes;
@@ -145,20 +145,20 @@ struct sSearchDriver {
 } extern sd;
 
 enum etimef {
-    FTIME=1,
-    FINC=2,
-    FMOVESTOGO=4,
-    FDEPTH=8,
-    FNODES=16,
-    FMATE=32,
-    FMOVETIME=64,
-    FINFINITE=128
+    FTIME = 1,
+    FINC = 2,
+    FMOVESTOGO = 4,
+    FDEPTH = 8,
+    FNODES = 16,
+    FMATE = 32,
+    FMOVETIME = 64,
+    FINFINITE = 128
 };
 
 enum etask {
-	TASK_NOTHING,
-	TASK_SEARCH,
-	TASK_PONDER
+    TASK_NOTHING,
+    TASK_SEARCH,
+    TASK_PONDER
 } extern task;
 
 struct structtime {
@@ -173,7 +173,7 @@ struct structtime {
 } extern chronos;
 
 struct s_options {
-	int ponder;
+    int ponder;
 
 };
 extern s_options options;
@@ -195,7 +195,7 @@ struct s_eval_data {
     int passed_pawn[2][128];
     int protected_passer[2][128];
 
-    int sqNearK [2][128][128];
+    int sqNearK[2][128][128];
 
     /* single values - letter p before a name signifies a penalty */
 
@@ -232,29 +232,29 @@ void board_display();
 void clearBoard();
 void fillSq(U8 color, U8 piece, S8 sq);
 void clearSq(S8 sq);
-int board_loadFromFen(char * fen);
+int board_loadFromFen(char* fen);
 
 
-int com_send(char * command);
+int com_send(char* command);
 int com_sendmove(smove m);
-int com_uci(char * command);
-int com_xboard(char * command);
-int com_nothing(char * command);
+int com_uci(char* command);
+int com_xboard(char* command);
+int com_nothing(char* command);
 int com();
 int com_init();
-int com_ismove(char * command);
+int com_ismove(char* command);
 void CheckInput();
 
 
-U8 movegen(smove * moves, U8 tt_move);
-U8 movegen_qs(smove * moves);
-void movegen_sort(U8 movecount, smove * m, U8 current);
+U8 movegen(smove* moves, U8 tt_move);
+U8 movegen_qs(smove* moves);
+void movegen_sort(U8 movecount, smove* m, U8 current);
 
 
-void convert_0x88_a(S8 sq, char * a);
-U8 convert_a_0x88(char * a);
-char * algebraic_writemove(smove m, char * a);
-int algebraic_moves(char * a);
+void convert_0x88_a(S8 sq, char* a);
+U8 convert_a_0x88(char* a);
+char* algebraic_writemove(smove m, char* a);
+int algebraic_moves(char* a);
 
 
 int move_make(smove move);
@@ -271,7 +271,7 @@ int move_countLegal();
 int move_isLegal(smove m);
 
 
-smove strToMove(char * a);
+smove strToMove(char* a);
 
 // subsidiary functions used to initialize opening book are hidden in book.h
 void initBook();
@@ -288,7 +288,7 @@ void setSquaresNearKing();
 void setPcsq();
 void correctValues();
 void readIniFile();
-void processIniString(char line[250] );
+void processIniString(char line[250]);
 
 
 int eval(int alpha, int beta, int use_hash);
@@ -298,25 +298,25 @@ void printEval();
 void printEvalFactor(int wh, int bl);
 
 
-int Quiesce( int alpha, int beta );
+int Quiesce(int alpha, int beta);
 int badCapture(smove move);
 int Blind(smove move);
 
 int isAttacked(char byColor, S8 sq);
-int leaperAttack( char byColor, S8 sq, char byPiece );
+int leaperAttack(char byColor, S8 sq, char byPiece);
 int straightAttack(char byColor, S8 sq, int vect);
 int diagAttack(int byColor, S8 sq, int vect);
 int bishAttack(int byColor, S8 sq, int vect);
 
-void perft_start(char * command);
+void perft_start(char* command);
 U64 perft(U8 depth);
 
-void util_bench(char * command);
-int util_pv(char * pv);
+void util_bench(char* command);
+int util_pv(char* pv);
 
 unsigned int gettime();
 int time_uci_ponderhit();
-void time_uci_go(char * command);
+void time_uci_go(char* command);
 void time_xboard_go();
 void time_nothing_go();
 void time_calc_movetime();

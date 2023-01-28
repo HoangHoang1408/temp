@@ -237,7 +237,6 @@ int passed_pawn_pcsq[64] = {
 };
 
 void setDefaultEval() {
-
     setBasicValues();
     setSquaresNearKing();
     setPcsq();
@@ -312,9 +311,9 @@ void setSquaresNearKing() {
 
                 /* squares constituting the ring around both kings */
                 if (j == i + NORTH || j == i + SOUTH 
-				||  j == i + EAST  || j == i + WEST 
-				||  j == i + NW    || j == i + NE 
-				||  j == i + SW    || j == i + SE) {
+				        ||  j == i + EAST  || j == i + WEST 
+				        ||  j == i + NW    || j == i + NE 
+				        ||  j == i + SW    || j == i + SE) {
 
                     e.sqNearK[WHITE][i][j] = 1;
                     e.sqNearK[BLACK][i][j] = 1;
